@@ -1,0 +1,8 @@
+services:
+
+  yt-dlp-ubuntu:
+    image: endis231235/youtube-dl
+    build: .
+    volumes:
+      - .:/mydir
+    container_name: yt-dlp

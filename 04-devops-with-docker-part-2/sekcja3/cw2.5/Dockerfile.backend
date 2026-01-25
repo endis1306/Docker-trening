@@ -1,0 +1,17 @@
+FROM golang:1.16
+
+WORKDIR /usr/src/app
+
+COPY ./example-backend/go.mod \
+     ./example-backend/go.sum ./
+
+RUN go mod download
+
+COPY ./example-backend .
+
+RUN go build -o server
+
+
+
+
+CMD [ "./server" ]

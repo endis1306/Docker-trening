@@ -1,0 +1,17 @@
+# Dockerfile.backend
+FROM golang:1.16
+
+WORKDIR /usr/src/app
+
+# Kopiujemy cały projekt
+COPY . .
+
+# Kompilujemy binarkę z głównego pliku app.go
+RUN go build -o server app.go
+
+EXPOSE 8080
+
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://localhost:5000
+
+CMD ["./server"]

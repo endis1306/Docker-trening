@@ -1,0 +1,22 @@
+# frontend
+FROM node:16
+
+WORKDIR /usr/src/app
+
+# Kopiujemy package*.json, żeby wykorzystać cache warstw
+COPY package*.json ./
+
+RUN npm install
+
+# Kopiujemy resztę źródeł (wszystko w katalogu)
+COPY . .
+
+# globalny serwer do statycznego frontendu
+RUN npm install -g serve
+
+# budujemy aplikację React
+RUN npm run build
+
+EXPOSE 5000
+
+CMD ["serve", "-s", "-l", "5000", "build"]
